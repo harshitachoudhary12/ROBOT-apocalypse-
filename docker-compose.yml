@@ -1,0 +1,57 @@
+# web:
+#     image: hitalos/laravel:latest
+#     ports:
+#         - 80:80
+#     volumes:
+#         - ./:/var/www
+    # If you don't want to use default 'artisan serve' command, edit and uncomment the line below.
+    # command: php -S 0.0.0.0:80 -t public public/index.php
+
+version: '3'
+services:
+
+    web:
+        image: hitalos/laravel:latest
+        ports:
+            - 80:80
+        volumes:
+            - ./:/var/www
+        links:
+            - db
+        environment:
+           
+            DB_HOST: db
+            DB_DATABASE: robot_db
+            DB_USERNAME: root
+            DB_CONNECTION: mysql
+        networks:
+           - app-network     
+    db:
+        image: mysql:latest
+        restart: unless-stopped
+        tty: true
+        environment:
+            # with mysql
+            ALLOW_EMPTY_PASSWORD: 'yes'
+            MYSQL_USER: root
+            MYSQL_DATABASE: robot_db
+            # MYSQL_PASSWORD: dbpwd
+            # MYSQL_ROOT_PASSWORD: dbpwd
+        volumes:
+            - container-volume:/var/lib/mysql
+            - ./robot_db.sql:/docker-entrypoint-initdb.d/robot_db.sql  
+            - /etc/mysql/mysql.conf.d/mysqld.cnf  
+        networks:
+           - app-network
+    PhpMyAdmin:
+        image: nazarpc/phpmyadmin
+        ports:
+        - "8090:80"
+        links:
+        - db:mysql       
+volumes:
+  container-volume:            
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge               
