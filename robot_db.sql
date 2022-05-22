@@ -1,0 +1,199 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 20, 2022 at 10:01 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `robot_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `infected_report`
+--
+
+CREATE TABLE `infected_report` (
+  `id` int(110) NOT NULL,
+  `report_by` int(110) NOT NULL,
+  `survivor_id` int(110) NOT NULL,
+  `flag` tinyint(4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `infected_report`
+--
+
+INSERT INTO `infected_report` (`id`, `report_by`, `survivor_id`, `flag`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 1, '2022-05-19 14:22:02', '2022-05-19 14:22:02'),
+(4, 3, 1, 1, '2022-05-19 14:25:01', '2022-05-19 14:25:01'),
+(5, 4, 1, 1, '2022-05-19 14:27:33', '2022-05-19 14:27:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `robots`
+--
+
+CREATE TABLE `robots` (
+  `id` int(110) NOT NULL,
+  `model` varchar(255) NOT NULL,
+  `serialNumber` text NOT NULL,
+  `manufacturedDate` text NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `robots`
+--
+
+INSERT INTO `robots` (`id`, `model`, `serialNumber`, `manufacturedDate`, `category`, `created_at`, `updated_at`) VALUES
+(1, '0M3DZ', '1U74R28W8Q8X1T8', '2022-05-22T13:24:28.5331388+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(2, '1FQP9', '8JR6DJ9VRIC6ZAE', '2022-07-05T13:24:28.5331998+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(3, '1NC2E', 'DC0UGPWK64NQHQD', '2022-06-23T13:24:28.5331812+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(4, '21MR4', 'IU4UHXLRWUGJ5WR', '2022-06-30T13:24:28.5331942+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(5, '29IMY', '5C07BH811Q8HWLL', '2022-05-24T13:24:28.533141+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(6, '2ZHEP', '117VNLQNKH8P8C7', '2022-06-05T13:24:28.5331614+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(7, '3VJFX', '6VAWBBT0VNNVHOB', '2022-06-09T13:24:28.5331659+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(8, '79MFI', '81RODYNCXJK8XM8', '2022-06-03T13:24:28.5331593+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(9, '7G9M1', 'CDEENFA91N5E24J', '2022-06-08T13:24:28.5331648+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(10, '9A4SA', 'UGVIEF3U4XJE0J0', '2022-06-02T13:24:28.5331582+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(11, 'A2IWD', 'UHCAVAM6A1LVDLY', '2022-06-25T13:24:28.5331834+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(12, 'BLZNB', 'WT54BT0XQOJK8NL', '2022-06-19T13:24:28.5331769+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(13, 'BQ8SH', 'DPQAO39SOJ0KCRY', '2022-06-17T13:24:28.5331747+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(14, 'BQVXF', '15H5BK4YDFLD5D8', '2022-05-30T13:24:28.5331475+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(15, 'CBMEE', 'CLSW91XS6V92247', '2022-05-28T13:24:28.5331454+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(16, 'CKD2P', 'S15MMA0XD5AGKLJ', '2022-05-31T13:24:28.5331486+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(17, 'CXHLC', 'CW1TYH39TFTT2S5', '2022-05-25T13:24:28.5331421+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(18, 'CZ8U7', 'WIGTQVNRL9TDAGP', '2022-07-02T13:24:28.5331965+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(19, 'DEE6V', 'U0691A9NOTM63Y4', '2022-06-10T13:24:28.533167+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(20, 'EU7S0', 'N6C3R4ZYNA5ZLZ9', '2022-05-21T13:24:28.5331376+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(21, 'EXEI0', 'PBWL6KUKPL5G27T', '2022-05-18T13:24:28.5331328+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(22, 'FZA4A', 'CGMBBR1STTAWBU9', '2022-06-12T13:24:28.5331692+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(23, 'G1FAF', '605UZU5B77H223X', '2022-06-18T13:24:28.5331758+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(24, 'GCDV4', 'XUT1U7Z3EX4JE2V', '2022-06-29T13:24:28.5331878+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(25, 'GRUM9', '4JGONMZQMBWY9VB', '2022-07-04T13:24:28.5331987+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(26, 'I1V71', 'UGJZ9Y3KAZTVQM0', '2022-06-27T13:24:28.5331856+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(27, 'INRQE', 'G2P7IFQIQPS5J9Z', '2022-06-28T13:24:28.5331866+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(28, 'JLGI4', 'N9HW7OODQBDWSAW', '2022-05-27T13:24:28.5331443+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(29, 'JQH1K', 'NM3VTQ4TRDSGF45', '2022-06-26T13:24:28.5331845+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(30, 'K2GNT', 'ZU2SHEC8GY1M2HX', '2022-06-01T13:24:28.533157+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(31, 'K8AYK', 'Q9UOPUESQ7F16JW', '2022-05-26T13:24:28.5331432+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(32, 'KMSAR', 'CVUH35TJUY2CWCJ', '2022-06-13T13:24:28.5331702+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(33, 'KP18Q', 'P4VT26CKQLK6WY9', '2022-06-24T13:24:28.5331823+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(34, 'M5ATF', '3HUSY73PSKQPPSC', '2022-06-21T13:24:28.5331791+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(35, 'MU5K4', '88UQB7RI4X5C28S', '2022-06-20T13:24:28.533178+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(36, 'P7MLS', 'SO3JGDO2U23GAN8', '2022-06-14T13:24:28.5331714+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(37, 'Q9VBO', 'VLRY3F6XHV4AQDU', '2022-05-19T13:24:28.5331351+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(38, 'QX88Q', 'C4U7IWINJG32P8L', '2022-06-06T13:24:28.5331625+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(39, 'R17RA', 'GABP4TJ5XTI8CE1', '2022-05-29T13:24:28.5331464+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(40, 'RCRDL', 'VJON9J7N3GZQNUD', '2022-06-11T13:24:28.5331681+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(41, 'RVEHF', '7R851899LUN9HS9', '2022-06-15T13:24:28.5331725+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(42, 'S2FG1', 'NZ70SO0M5O11429', '2022-05-23T13:24:28.5331399+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(43, 'S9TOC', 'LSESPXWTRZAXZKC', '2022-06-04T13:24:28.5331603+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(44, 'SEZ49', 'VHUGV9EN9QJGIJ4', '2022-05-17T13:24:28.5321297+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(45, 'TVJKL', 'P48XVDNL0NEBC4F', '2022-05-20T13:24:28.5331364+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(46, 'UQB99', '54DZERWEAO6JDPY', '2022-07-03T13:24:28.5331976+00:00', 'Land', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(47, 'UUTFE', 'GIJK1UZXMWE1IYN', '2022-06-07T13:24:28.5331636+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(48, 'WIXML', 'PXE2UI1RN6PZW1W', '2022-07-01T13:24:28.5331954+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(49, 'Y1LB0', 'Q1Z25VBJE143EFU', '2022-06-16T13:24:28.5331736+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02'),
+(50, 'Y9O2D', 'CS23THR949RTMEB', '2022-06-22T13:24:28.5331801+00:00', 'Flying', '2022-05-19 21:18:02', '2022-05-19 21:18:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `survivors`
+--
+
+CREATE TABLE `survivors` (
+  `id` int(110) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `age` int(110) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `lat` text NOT NULL,
+  `lng` text NOT NULL,
+  `water` tinyint(4) NOT NULL,
+  `food` tinyint(4) NOT NULL,
+  `medication` tinyint(4) NOT NULL,
+  `ammunition` tinyint(4) NOT NULL,
+  `is_infected` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `survivors`
+--
+
+INSERT INTO `survivors` (`id`, `name`, `age`, `gender`, `lat`, `lng`, `water`, `food`, `medication`, `ammunition`, `is_infected`, `created_at`, `updated_at`) VALUES
+(1, 'Reena', 21, 'female', '26.8496217', '81.0072193', 1, 1, 0, 1, 1, '2022-05-19 19:57:33', '2022-05-19 14:27:33'),
+(2, 'Pooja', 23, 'female', '26.8528761', '80.9988505', 1, 1, 0, 1, 0, '2022-05-19 14:20:58', '2022-05-19 14:20:58'),
+(3, 'Rita', 55, 'female', '26.8528761', '80.9988505', 1, 1, 0, 1, 0, '2022-05-19 14:24:51', '2022-05-19 14:24:51'),
+(4, 'Sita', 15, 'female', '26.8528761', '80.9988505', 1, 1, 0, 1, 0, '2022-05-19 14:27:22', '2022-05-19 14:27:22');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `infected_report`
+--
+ALTER TABLE `infected_report`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `robots`
+--
+ALTER TABLE `robots`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `survivors`
+--
+ALTER TABLE `survivors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `infected_report`
+--
+ALTER TABLE `infected_report`
+  MODIFY `id` int(110) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `robots`
+--
+ALTER TABLE `robots`
+  MODIFY `id` int(110) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT for table `survivors`
+--
+ALTER TABLE `survivors`
+  MODIFY `id` int(110) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
