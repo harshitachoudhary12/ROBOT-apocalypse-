@@ -13,7 +13,7 @@ services:
     web:
         image: hitalos/laravel:latest
         ports:
-            - 80:80
+            - 8000:80
         volumes:
             - ./:/var/www
         links:
@@ -28,27 +28,31 @@ services:
            - app-network     
     db:
         image: mysql:latest
-        restart: unless-stopped
-        tty: true
+        # restart: unless-stopped
+        # tty: true
+        # command: --default-authentication-plugin=mysql_native_password
+        # restart: always
         environment:
             # with mysql
-            ALLOW_EMPTY_PASSWORD: 'yes'
-            MYSQL_USER: root
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+            # MYSQL_USER: root
             MYSQL_DATABASE: robot_db
-            # MYSQL_PASSWORD: dbpwd
-            # MYSQL_ROOT_PASSWORD: dbpwd
+            # MYSQL_PASSWORD: root
+            # MYSQL_ROOT_PASSWORD: root
+        ports:
+        - "3306:3306"    
         volumes:
-            - container-volume:/var/lib/mysql
+            # - container-volume:/var/lib/mysql
             - ./robot_db.sql:/docker-entrypoint-initdb.d/robot_db.sql  
-            - /etc/mysql/mysql.conf.d/mysqld.cnf  
+            # - /etc/mysql/mysql.conf.d/mysqld.cnf  
         networks:
            - app-network
-    PhpMyAdmin:
-        image: nazarpc/phpmyadmin
-        ports:
-        - "8090:80"
-        links:
-        - db:mysql       
+    # PhpMyAdmin:
+    #     image: nazarpc/phpmyadmin
+    #     ports:
+    #     - "8090:80"
+    #     links:
+    #     - db:mysql       
 volumes:
   container-volume:            
 #Docker Networks

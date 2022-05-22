@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/doc', function () {
-    return view('doc');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/home', function () {
     return view('welcome');
 });
-Route::get('/api', function () {
+Route::get('/api_url', function () {
     return view('api');
 });
 Route::get('/','App\Http\Controllers\RobotsController@index');

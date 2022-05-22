@@ -101,7 +101,7 @@ public function update_location(Request $request)
                 return response()->json($res);
     }
 public function infected_report(Request $request)
-    {
+    { 
         $validator = \Validator::make(
                 $request->all(),
                 [
@@ -117,8 +117,23 @@ public function infected_report(Request $request)
              'message' => $messages
             ]);
         }
+      
        $infected_person = Survivors::findOrFail($request->survivor_id);
+
        $report_by_person = Survivors::findOrFail($request->report_by);
+       ////
+       $IsReported=InfectedReport::where('survivor_id', $request->survivor_id)
+            ->where('report_by',$request->report_by)
+            ->get();
+        if ($IsReported) 
+        {
+            $res=[  
+            'responseCode'=>0,
+            'message' => 'This report_by already report this survivor_id',
+            ];
+            return response()->json($res);
+        }    
+       ///
        if ($infected_person) {
             if ($report_by_person) {
               
@@ -127,13 +142,16 @@ public function infected_report(Request $request)
         $infectedReport->survivor_id = $request->survivor_id;
         $infectedReport->flag        = 1;
         if($infectedReport->save()){
-
+            // echo "string";die;
             ///check the max limit 3
             $flag=0;  
             $InfectedCount=InfectedReport::where('survivor_id', $request->survivor_id)
             ->where('flag', 1)
             ->get(); 
-            if (count($InfectedCount)<=3) {
+            // echo "string";print_r(count($InfectedCount));
+            // die();
+            $count=count($InfectedCount);
+            if ($count<=3) {
                 $flag=1;
                 ////update in Survivor table
                 $infected_person->is_infected=1;
@@ -151,6 +169,12 @@ public function infected_report(Request $request)
                 ];
                 return response()->json($res);
                 }
+            }else{
+                $res=[
+                'responseCode'=>1,
+                'message' => 'infected person report by less then 3 person',
+                ];
+                return response()->json($res);    
             }
 
             }
